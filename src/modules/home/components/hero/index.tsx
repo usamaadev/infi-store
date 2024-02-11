@@ -19,15 +19,7 @@ const Hero = () => {
             Get Yours Now
           </Heading>
         </span>
-        <a
-          href="https://github.com/usamaadev"
-          target="_blank"
-        >
-          <Button variant="secondary">
-            Contact
-            <Github />
-          </Button>
-        </a>
+
       </div>
     </div>
   )

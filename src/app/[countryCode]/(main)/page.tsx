@@ -66,9 +66,6 @@ export default async function Home({
     return null
   }
 
-  console.log('====================================');
-  console.log({ collections });
-  console.log('====================================');
 
   return (
     <>
