@@ -8,9 +8,9 @@ import { getRegion } from "app/actions"
 import { ProductCollectionWithPreviews } from "types/global"
 
 export const metadata: Metadata = {
-  title: "Next.js Ecommerce Template",
+  title: "KZ-HOME",
   description:
-    "A performant frontend ecommerce  template with Next.js 14.",
+    "Elevate Your Home with Premium Products",
 }
 
 const getCollectionsWithProducts = async (
