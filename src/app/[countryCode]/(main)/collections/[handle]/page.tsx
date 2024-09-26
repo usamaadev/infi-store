@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const metadata = {
-    title: `${collection.title} | IDEAL Store`,
+    title: `${collection.title} | Kz-home`,
     description: `${collection.title} collection`,
   } as Metadata
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const getCollectionsWithProducts = async (
   countryCode: string
 ): Promise<ProductCollectionWithPreviews[] | null> => {
-  const { collections } = await getCollectionsList(0, 3).then(
+  const { collections } = await getCollectionsList(0, 2).then(
     (collections) => collections
   )
 
@@ -29,7 +29,7 @@ const getCollectionsWithProducts = async (
   await Promise.all(
     collectionIds.map((id) =>
       getProductsList({
-        queryParams: { collection_id: [id] },
+        queryParams: { collection_id: [id], },
         countryCode,
       })
     )

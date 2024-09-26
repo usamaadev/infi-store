@@ -1,47 +1,34 @@
 import { Text, clx } from "@medusajs/ui"
-
 import { getCategoriesList, getCollectionsList } from "@lib/data"
-
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "../../components/medusa-cta"
-
-const fetchCollections = async () => {
-  const { collections } = await getCollectionsList()
-  return collections
-}
-
-const fetchCategories = async () => {
-  const { product_categories } = await getCategoriesList()
-  return product_categories
-}
+import Image from "next/image"
+// import Logo from '/public/logo.png'
 
 export default async function Footer() {
-  const productCollections = await fetchCollections().then(
-    (collections) => collections
-  )
-  const productCategories = await fetchCategories().then(
-    (categories) => categories
-  )
+  const { collections } = await getCollectionsList(0, 15)
+  const { product_categories } = await getCategoriesList(0, 15)
+
   return (
     <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
+        <div className="flex  flex-col gap-x-28 gap-y-6 md:flex-row items-start justify-between py-20 space-y-10 md:space-y-0">
+          <div className="flex items-center max-w-[210px]">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
             >
-              IDEAL Store
+              Kz-home
             </LocalizedClientLink>
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
-            {productCategories && productCategories?.length > 0 && (
+
+          <div className="text-small-regular max-w-4xl gap-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {product_categories && product_categories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">
                   Categories
                 </span>
-                <ul className="grid grid-cols-1 gap-2">
-                  {productCategories?.slice(0, 6).map((c) => {
+                <ul className="grid grid-cols-1 gap-2" data-testid="footer-categories">
+                  {product_categories?.slice(0, 6).map((c) => {
                     if (c.parent_category) {
                       return
                     }
@@ -64,6 +51,7 @@ export default async function Footer() {
                             children && "txt-small-plus"
                           )}
                           href={`/categories/${c.handle}`}
+                          data-testid="category-link"
                         >
                           {c.name}
                         </LocalizedClientLink>
@@ -75,6 +63,7 @@ export default async function Footer() {
                                   <LocalizedClientLink
                                     className="hover:text-ui-fg-base"
                                     href={`/categories/${child.handle}`}
+                                    data-testid="category-link"
                                   >
                                     {child.name}
                                   </LocalizedClientLink>
@@ -88,7 +77,7 @@ export default async function Footer() {
                 </ul>
               </div>
             )}
-            {productCollections && productCollections.length > 0 && (
+            {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">
                   Collections
@@ -97,11 +86,11 @@ export default async function Footer() {
                   className={clx(
                     "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
                     {
-                      "grid-cols-2": (productCollections?.length || 0) > 3,
+                      "grid-cols-2": (collections?.length || 0) > 3,
                     }
                   )}
                 >
-                  {productCollections?.slice(0, 6).map((c) => (
+                  {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
                         className="hover:text-ui-fg-base"
@@ -115,19 +104,72 @@ export default async function Footer() {
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">CONTACT</span>
+              <span className="txt-small-plus txt-ui-fg-base">Company</span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
-                  <a
-                    href="https://usamaadev.com"
-                    target="_blank"
-                    rel="noreferrer"
+                  <LocalizedClientLink
+                    className="hover:text-ui-fg-base"
+                    href={`/about-us`}
+                  >
+                    About Us
+                  </LocalizedClientLink>
+                </li>  <li>
+                  <LocalizedClientLink
+                    className="hover:text-ui-fg-base"
+                    href={`/privacy-policy`}
+                  >
+                    Privacy Policy
+                  </LocalizedClientLink>
+                </li>
+
+                <li>
+                  <LocalizedClientLink
+                    className="hover:text-ui-fg-base"
+                    href={`/terms-of-use`}
+                  >
+                    Terms of use
+                  </LocalizedClientLink>
+                </li>
+
+              </ul>
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <span className="txt-small-plus txt-ui-fg-base">Support</span>
+              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+                <li>
+                  <LocalizedClientLink
+                    href="/contact-us"
                     className="hover:text-ui-fg-base"
                   >
-                    Usamaadev
+                    Contact Us
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <a
+                    href="tel:1-800-123-4567"
+                    target="_blank"
+                    className="hover:text-ui-fg-base"
+                  >
+                    Phone: 1-800-123-4567
                   </a>
                 </li>
-              
+                <li>
+                  <a
+                    href="mailto:info@mail.com"
+                    target="_blank"
+                    className="hover:text-ui-fg-base"
+                  >
+                    Email: info@mail.com
+                  </a>
+                </li>
+                <li>
+                  <p
+
+                    className="hover:text-ui-fg-base"
+                  >
+                    Address: Lake City Garden 234, New York, USA
+                  </p>
+                </li>
               </ul>
             </div>
           </div>
@@ -136,7 +178,6 @@ export default async function Footer() {
           <Text className="txt-compact-small">
             © {new Date().getFullYear()} All rights reserved.
           </Text>
-          {/* <MedusaCTA /> */}
         </div>
       </div>
     </footer>
