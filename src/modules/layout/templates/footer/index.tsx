@@ -146,20 +146,20 @@ export default async function Footer() {
                 </li>
                 <li>
                   <a
-                    href="tel:1-800-123-4567"
+                    href="tel:+19544052506"
                     target="_blank"
                     className="hover:text-ui-fg-base"
                   >
-                    Phone: 1-800-123-4567
+                    Phone: +19544052506
                   </a>
                 </li>
                 <li>
                   <a
-                    href="mailto:info@mail.com"
+                    href="mailto:info@developersworld.io"
                     target="_blank"
                     className="hover:text-ui-fg-base"
                   >
-                    Email: info@mail.com
+                    Email: info@developersworld.io
                   </a>
                 </li>
                 <li>
