@@ -162,14 +162,7 @@ export default async function Footer() {
                     Email: info@developersworld.io
                   </a>
                 </li>
-                <li>
-                  <p
-
-                    className="hover:text-ui-fg-base"
-                  >
-                    Address: Lake City Garden 234, New York, USA
-                  </p>
-                </li>
+         
               </ul>
             </div>
           </div>
